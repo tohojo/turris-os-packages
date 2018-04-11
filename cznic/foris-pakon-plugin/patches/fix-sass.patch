@@ -1,0 +1,19 @@
+Index: foris-pakon-plugin/src/static/sass/pakon.sass
+===================================================================
+--- foris-pakon-plugin.orig/src/static/sass/pakon.sass
++++ foris-pakon-plugin/src/static/sass/pakon.sass
+@@ -115,7 +115,6 @@ label
+     padding-right: 2rem
+   &[for="date-from"] span::after, &[for="date-to"] span::after
+     content: '\1f4c5'
+-    /* 📅
+     position: absolute
+     display: inline-block
+     right: 0
+@@ -10968,4 +10967,4 @@ label
+   background-color: #ff9d3b
+ 
+ .bc-color-zopim, .bc-color-zopim-1
+-  color: #ff9d3b
+\ No newline at end of file
++  color: #ff9d3b
