@@ -8,10 +8,10 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sentinel-proxy
-PKG_VERSION:=1
+PKG_VERSION:=2
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=git@gitlab.labs.nic.cz:turris/sentinel/proxy.git
-PKG_SOURCE_VERSION:=fd1fb379dc69eba36be373e6dd671a22cdeaeeb6
+PKG_SOURCE_VERSION:=9d46e2bb5cb4b945b9f08c1d5057e6c1e69f57ae
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)
 PKG_MAINTAINER:=Martin Petracek <martin.petracek@nic.cz>
