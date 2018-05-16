@@ -8,10 +8,10 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sentinel-proxy
-PKG_VERSION:=2
+PKG_VERSION:=3
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=git@gitlab.labs.nic.cz:turris/sentinel/proxy.git
-PKG_SOURCE_VERSION:=9d46e2bb5cb4b945b9f08c1d5057e6c1e69f57ae
+PKG_SOURCE_VERSION:=3b88a2fcbed9f00d4554b0d445093a91d69c9a84
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)
 PKG_MAINTAINER:=Martin Petracek <martin.petracek@nic.cz>
@@ -31,6 +31,8 @@ endef
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sentinel-proxy $(1)/usr/bin/
+        $(INSTALL_DIR) $(1)/etc/init.d
+        $(INSTALL_BIN) files/init $(1)/etc/init.d/sentinel-proxy
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
