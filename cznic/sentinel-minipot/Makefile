@@ -8,10 +8,10 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sentinel-minipot
-PKG_VERSION:=2
+PKG_VERSION:=3
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=git@gitlab.labs.nic.cz:turris/sentinel/minipot.git
-PKG_SOURCE_VERSION:=35a1f7dc899dbd58a5db6b83955cb461858ef42c
+PKG_SOURCE_VERSION:=9c7cc97f48ad0fda2a2ff50f602c9b28f9ac8343
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)
 PKG_MAINTAINER:=Martin Petracek <martin.petracek@nic.cz>
@@ -31,6 +31,13 @@ endef
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sentinel-minipot $(1)/usr/bin/
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/init $(1)/etc/init.d/sentinel-minipot
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_BIN) ./files/config $(1)/etc/config/sentinel
+	$(INSTALL_DIR) $(1)/etc/firewall.d
+	$(INSTALL_DIR) $(1)/etc/firewall.d/with_reload
+	$(INSTALL_BIN) ./files/fw_reload $(1)/etc/firewall.d/with_reload/99_sentinel_minipot.fw
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
