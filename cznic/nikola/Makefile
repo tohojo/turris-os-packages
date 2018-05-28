@@ -8,11 +8,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nikola
-PKG_VERSION:=42
+PKG_VERSION:=43
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://gitlab.labs.nic.cz/turris/nikola.git
 PKG_SOURCE:=$(PKG_NAME).tar.gz
-PKG_SOURCE_VERSION:=5f7fea558a5fd677f9a5e5f5e2cc68160d6e6b37
+PKG_SOURCE_VERSION:=86139aaea4c7a955f197706f419d764709ee00f3
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)
 PKG_MAINTAINER:=CZ.NIC <packaging@turris.cz>
@@ -22,7 +22,7 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/$(PKG_NAME)
 	TITLE:=$(PKG_NAME)
-	DEPENDS:=+python-light +logrotate +syslog-ng3 +python-libatsha204 +firewall +cznic-cacert-bundle
+	DEPENDS:=+python3-light +logrotate +syslog-ng3 +firewall
 endef
 
 define Package/$(PKG_NAME)/description
@@ -30,15 +30,11 @@ define Package/$(PKG_NAME)/description
 endef
 
 define Build/Compile
-	cd $(PKG_BUILD_DIR)/Nikola ; $(CONFIGURE_VARS) python ./setup.py install --prefix="$(PKG_INSTALL_DIR)/usr"
+	cd $(PKG_BUILD_DIR)/Nikola ; $(CONFIGURE_VARS) python3 ./setup.py install --prefix="$(PKG_INSTALL_DIR)/usr"
 endef
 
 define Package/$(PKG_NAME)/conffiles
 /etc/config/nikola
-endef
-
-define Build/Configure
-	$(SED) 's/^__version__ =.*/__version__ = "$(PKG_VERSION)"/' $(PKG_BUILD_DIR)/Nikola/nikola/version.py
 endef
 
 define Package/$(PKG_NAME)/install
